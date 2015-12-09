@@ -17,14 +17,14 @@
 
 double RotateOffsetX(double x_offset, double y_offset, double angle);
 double RotateOffsetY(double x_offset, double y_offset, double angle);
-double Distance(double x_a, double y_a, double x_b, double y_b);
+int    Distance(int x_a, int y_a, int x_b, int y_b);
 
-double VectorLength(Vector v);
+int    VectorLength(Vector v);
 Vector RotateVector(Vector vector, double angle);
 Vector AddVectors(Vector v, Vector u);
 Vector VectorMult(Vector v, double x);
 Vector unitaryVector(Vector v);
-double DotProduct(Vector v, Vector u);
+int    DotProduct(Vector v, Vector u);
 Vector ProjectVector(Vector from, Vector to);
 
 double DVectorLength(DVector v);
@@ -32,7 +32,7 @@ DVector RotateDVector(DVector vector, double angle);
 DVector AddDVectors(DVector v, DVector u);
 DVector DVectorMult(DVector v, double x);
 DVector unitaryDVector(DVector v);
-double DotProduct(DVector v, DVector u);
+double DDotProduct(DVector v, DVector u);
 DVector ProjectDVector(DVector from, DVector to);
 
 #endif //EXTRA_MATH_H
