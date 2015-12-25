@@ -15,15 +15,6 @@
 
 #define PI 3.14159265
 
-Vector RotateVector(Vector vector, double angle)
-{
-    angle *= PI / 180;
-    return (Vector)
-    {
-        cos(angle)*vector.x - sin(angle)*vector.y,
-        cos(angle)*vector.y + sin(angle)*vector.x
-    };
-}
 double RotateOffsetX(double x_offset, double y_offset, double angle)
 {
     angle *= PI / 180;
@@ -41,9 +32,18 @@ int Distance(int x_a, int y_a, int x_b, int y_b)
     return sqrt(dx*dx + dy*dy);
 }
 
-int VectorLength(Vector v)
+double VectorLength(Vector v)
 {
     return sqrt(v.x*v.x + v.y*v.y);
+}
+Vector RotateVector(Vector vector, double angle)
+{
+    angle *= PI / 180;
+    return (Vector)
+    {
+        cos(angle)*vector.x - sin(angle)*vector.y,
+        cos(angle)*vector.y + sin(angle)*vector.x
+    };
 }
 Vector AddVectors(Vector v, Vector u)
 {
@@ -57,7 +57,7 @@ Vector unitaryVector(Vector v)
 {
     return VectorMult(v, 1.0/VectorLength(v));
 }
-int DotProduct(Vector v, Vector u)
+double DotProduct(Vector v, Vector u)
 {
     return v.x*u.x + v.y*u.y;
 }
@@ -65,3 +65,38 @@ Vector ProjectVector(Vector from, Vector to)
 {
     return VectorMult(to, DotProduct(from, to)/DotProduct(to, to));
 }
+
+double DVectorLength(DVector v)
+{
+    return sqrt(v.x*v.x + v.y*v.y);
+}
+DVector RotateDVector(DVector vector, double angle)
+{
+    angle *= PI / 180;
+    return (DVector)
+    {
+        cos(angle)*vector.x - sin(angle)*vector.y,
+        cos(angle)*vector.y + sin(angle)*vector.x
+    };
+}
+DVector AddDVectors(DVector v, DVector u)
+{
+    return (DVector){v.x + u.x, v.y + u.y};
+}
+DVector DVectorMult(DVector v, double x)
+{
+    return (DVector){v.x * x, v.y * x};
+}
+DVector unitaryDVector(DVector v)
+{
+    return DVectorMult(v, 1.0/DVectorLength(v));
+}
+double DDotProduct(DVector v, DVector u)
+{
+    return v.x*u.x + v.y*u.y;
+}
+DVector ProjectDVector(DVector from, DVector to)
+{
+    return DVectorMult(to, DDotProduct(from, to)/DDotProduct(to, to));
+}
+

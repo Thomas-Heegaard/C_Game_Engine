@@ -171,9 +171,11 @@ ERR TestControllerLoop()
             {
                 printf("BOOM\n");
                 //flags ^= CONTINUE;
-                AddForce(ship->physics_object, yoshi->x_speed * yoshi->physics_object->mass, yoshi->y_speed * yoshi->physics_object->mass,
+                double delta_speed_x = ship->x_speed - yoshi->x_speed;
+                double delta_speed_y = ship->y_speed - yoshi->y_speed;
+                AddForce(ship->physics_object, -delta_speed_x * yoshi->physics_object->mass, -delta_speed_y * yoshi->physics_object->mass,
                         ship->physics_object->cog_x, ship->physics_object->cog_y);
-                AddForce(yoshi->physics_object, ship->x_speed * ship->physics_object->mass, ship->y_speed * ship->physics_object->mass,
+                AddForce(yoshi->physics_object, delta_speed_x * ship->physics_object->mass, delta_speed_y * ship->physics_object->mass,
                         yoshi->physics_object->cog_x, yoshi->physics_object->cog_y);
             }
             Element* el = bolts->start;
