@@ -127,6 +127,15 @@ ERR TestControllerLoop()
                     break;
                 case SDLK_LEFT: ship->a_speed   = -5.0; break;
                 case SDLK_RIGHT: ship->a_speed  = 5.0; break;
+                case SDLK_SPACE:
+                    tmp = CopyEntity(bolt);
+                    tmp->center_x = ship->center_x;
+                    tmp->center_y = ship->center_y;
+                    tmp->angle = ship->angle;
+                    tmp->x_speed = RotateOffsetX(0.0, -10.0, ship->angle);
+                    tmp->y_speed = RotateOffsetY(0.0, -10.0, ship->angle);
+                    InsertValue(tmp, bolts, 0);
+                    break;
                 case SDLK_r :
                     yoshi->center_x = 220;
                     yoshi->center_y = 120;
@@ -136,14 +145,9 @@ ERR TestControllerLoop()
                     ship->center_y = 120;
                     ship->x_speed = 0;
                     ship->y_speed = 0;
-                case SDLK_SPACE:
-                    tmp = CopyEntity(bolt);
-                    tmp->center_x = ship->center_x;
-                    tmp->center_y = ship->center_y;
-                    tmp->angle = ship->angle;
-                    tmp->x_speed = RotateOffsetX(0.0, -10.0, ship->angle);
-                    tmp->y_speed = RotateOffsetY(0.0, -10.0, ship->angle);
-                    InsertValue(tmp, bolts, 0);
+                    break;
+                case SDLK_q :
+                    flags ^= CONTINUE;
                     break;
                 }
             else if(event.type == SDL_KEYUP)
