@@ -107,8 +107,6 @@ ERR TestControllerLoop()
 {
     while(flags & CONTINUE)
     {
-        //AddForce(ship->physics_object, 0.0, 10.0, ship->physics_object->cog_x, ship->physics_object->cog_y);        
-
         SDL_Event event;
         while(SDL_PollEvent(&event) != 0)
         {
@@ -173,8 +171,7 @@ ERR TestControllerLoop()
 
             if(CheckCollision(ship->collision_object, yoshi->collision_object) != 0)
             {
-                printf("BOOM\n");
-                //flags ^= CONTINUE;
+                if(DEBUG) printf("BOOM\n");
                 double delta_speed_x = ship->x_speed - yoshi->x_speed;
                 double delta_speed_y = ship->y_speed - yoshi->y_speed;
                 AddForce(ship->physics_object, -delta_speed_x * yoshi->physics_object->mass, -delta_speed_y * yoshi->physics_object->mass,
@@ -188,11 +185,6 @@ ERR TestControllerLoop()
             while(el != NULL)
             {
                 tmp = (Entity*)el->value;
-                //if(CheckCollision(ship->collision_object, tmp->collision_object) != 0)
-                //{
-                //    printf("BOOM\n");
-                //    flags ^= CONTINUE;
-                //}
                 if(CheckCollision(yoshi->collision_object, tmp->collision_object) != 0)
                 {
                     AddForce(yoshi->physics_object, RotateOffsetX(0.0, -10.0, tmp->angle), RotateOffsetY(0.0, -10.0, tmp->angle),
@@ -240,18 +232,18 @@ ERR TestControllerLoop()
         {
             ClearPMap(visual_debug);
             DrawEntity(ship);
-            //DrawEntityDebugInfo(visual_debug, ship);
+            if(DEBUG) DrawEntityDebugInfo(visual_debug, ship);
             DrawEntity(flames);
             DrawEntity(yoshi);
-            //DrawEntityDebugInfo(visual_debug, yoshi);
+            if(DEBUG) DrawEntityDebugInfo(visual_debug, yoshi);
             int i;
             for(i = 0; i < bolts->size; i++)
             {
                 tmp = (Entity*)GetValue(bolts, i);
                 DrawEntity(tmp);
-                //DrawEntityDebugInfo(visual_debug, tmp);
+                if(DEBUG) DrawEntityDebugInfo(visual_debug, tmp);
             }
-            DrawPixelMap(visual_debug);
+            if(DEBUG) DrawPixelMap(visual_debug);
             Render();
         }
     }

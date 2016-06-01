@@ -28,7 +28,7 @@ int main()
 
     StartTestController();
 
-    printf("FPS: %d\n", GetFPS());
+    if(DEBUG) printf("FPS: %d\n", GetFPS());
 
     ExitSDL();
     return 0;

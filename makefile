@@ -1,6 +1,10 @@
 ######## Build options ########
 
+#print all messages
 verbose = 0
+
+#set to 1 to enable debug
+CFLAGS += -DDEBUG=1
 
 ######## Build setup ########
 
@@ -82,7 +86,6 @@ CWARNS += -Wunused-variable
 #CWARNS += -Wmissing-prototypes
 
 CFLAGS += -m32
-CFLAGS += -DDEBUG=1
 CFLAGS += -pthread -DUSE_STDIO=1 -D__GCC_POSIX__=1
 
 # MAX_NUMBER_OF_TASKS = max pthreads used in the POSIX port. 

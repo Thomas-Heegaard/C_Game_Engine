@@ -117,7 +117,7 @@ ERR CheckCollision(CollisionObject* obj_a, CollisionObject* obj_b)
         return 0;
     if(obj_a->elements == NULL && obj_b->elements == NULL)
         return 1;
-printf("COllision problem\n");
+    printf("COllision problem\n");
     Element* tmp_a;
     Element* tmp_b;
     tmp_a = obj_a->elements->start;
