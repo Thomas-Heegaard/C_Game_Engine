@@ -1,11 +1,14 @@
 #!/usr/bin/perl
+use Cwd;
 
-$CodeDirectory = ("/home/thomas/code/sdl/C_SDL2/source");
-@FilesToScan = ("$CodeDirectory/modules/graphics/sprite.h",
-                "$CodeDirectory/modules/graphics/texture_bank.h",
-                "$CodeDirectory/core/entity.h");
+print "Updating live define";
 
-$OutFile = "$CodeDirectory/utils/live_define.c";
+$CodeDirectory = getcwd;
+@FilesToScan = ("$CodeDirectory/engine/graphics/sprite.h",
+                "$CodeDirectory/game/texture_bank.h",
+                "$CodeDirectory/engine/entity/entity.h");
+
+$OutFile = "$CodeDirectory/game/live_define.c";
 
 open (my $out, ">", $OutFile) or die "$OutFile could not be opened: $!";
 

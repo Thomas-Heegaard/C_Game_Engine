@@ -101,6 +101,7 @@ all: setup app
 setup:
 # Make obj directory
 	@mkdir -p $(ODIR)
+	@scripts/UpdateLiveDefine.pl
 
 # Fix to place .o files in ODIR
 _OBJS = $(patsubst %,$(ODIR)/%,$(OBJS))
