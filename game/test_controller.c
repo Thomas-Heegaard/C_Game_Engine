@@ -183,7 +183,7 @@ ERR TestControllerLoop()
                         yoshi->physics_object->cog_x, yoshi->physics_object->cog_y);
             }
             Element* el = bolts->start;
-            Entity* tmp = NULL;
+            tmp = NULL;
             int i = 0;
             while(el != NULL)
             {
@@ -225,7 +225,7 @@ ERR TestControllerLoop()
 
             for(i = 0; i < bolts->size; i++)
             {
-                Entity* tmp = (Entity*)GetValue(bolts, i);
+                tmp = (Entity*)GetValue(bolts, i);
                 if(tmp->center_x < -15 || tmp->center_y < -15 || tmp->center_x > 1000 || tmp->center_y > 500)
                 {
                     FreeEntity(tmp);
@@ -240,16 +240,16 @@ ERR TestControllerLoop()
         {
             ClearPMap(visual_debug);
             DrawEntity(ship);
-            DrawEntityDebugInfo(visual_debug, ship);
+            //DrawEntityDebugInfo(visual_debug, ship);
             DrawEntity(flames);
             DrawEntity(yoshi);
-            DrawEntityDebugInfo(visual_debug, yoshi);
+            //DrawEntityDebugInfo(visual_debug, yoshi);
             int i;
             for(i = 0; i < bolts->size; i++)
             {
-                Entity* tmp = (Entity*)GetValue(bolts, i);
+                tmp = (Entity*)GetValue(bolts, i);
                 DrawEntity(tmp);
-                DrawEntityDebugInfo(visual_debug, tmp);
+                //DrawEntityDebugInfo(visual_debug, tmp);
             }
             DrawPixelMap(visual_debug);
             Render();
